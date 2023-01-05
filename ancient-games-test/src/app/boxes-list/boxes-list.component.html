@@ -1,0 +1,4 @@
+<ul>
+  <li *ngFor="let box of boxes$ | async">{{ box.node?.id }} {{ box.node?.name }}</li>
+  {{ boxes$ | async | json }}
+</ul>
