@@ -1,1 +1,13 @@
-<p>box-detail works!</p>
+<div
+  *ngFor="let box of box$ | async"
+  class="flex flex-col justify-center items-center mt-20"
+>
+  <img
+    class="bg-image"
+    src="{{ box?.node?.iconUrl }}"
+    alt="img">
+{{box.node?.id}}
+  <div>{{ box.node?.name}}</div>
+  <div>{{ box.node?.cost }}</div>
+  <button (click)="openBox()" class="mt-10 animate-pulse hover:animate-none">Open box</button>
+</div>

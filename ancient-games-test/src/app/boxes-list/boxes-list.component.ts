@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {map, Observable} from "rxjs";
-import {BoxesListService} from "../services/boxes-list.service";
+import {Observable} from "rxjs";
+import {Service} from "../service";
 import {BoxEdge} from "../types";
 
 @Component({
@@ -11,7 +11,11 @@ import {BoxEdge} from "../types";
 export class BoxesListComponent {
   boxes$ = new Observable<BoxEdge[]>;
 
-  constructor(private boxesListService: BoxesListService) {
-    this.boxes$ = this.boxesListService.boxes();
+  constructor(private service: Service) {
+    this.boxes$ = this.service.boxes();
+  }
+
+  updateWallet() {
+    this.service.updateWallet();
   }
 }

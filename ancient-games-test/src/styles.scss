@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(0deg, rgba(195, 105, 34, 1) 0%, rgba(255, 254, 52, 1) 100%);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+img {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  background-color: rebeccapurple;
+  color: #fff;
+  border-radius: 5px;
+}

@@ -1,4 +1,16 @@
-<ul>
-  <li *ngFor="let box of boxes$ | async">{{ box.node?.id }} {{ box.node?.name }}</li>
-  {{ boxes$ | async | json }}
+<ul class="flex flex-row gap-10 justify-center mt-40">
+  <li
+    *ngFor="let box of boxes$ | async | slice:79:82"
+    class="cursor-pointer basis-40 flex relative before:-skew-y-3 before:block before:absolute before:-inset-1 before:bg-orange-400 before:ring-2 before:ring-zinc-400 hover:scale-125"
+    [routerLink]="['/box/', box.node?.id]"
+  >
+    <div class="relative flex flex-col items-center py-3 px-3" (click)="updateWallet()">
+      <h2 class="text-xl">{{ box.node?.name}}</h2>
+      <h3 class="text-lg font-bold text-yellow-400">&euro; {{ box.node?.cost }}</h3>
+      <img
+        src="{{ box.node?.iconUrl }}"
+        class="hover:scale-20"
+        alt="img">
+    </div>
+  </li>
 </ul>

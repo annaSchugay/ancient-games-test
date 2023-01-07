@@ -43,3 +43,52 @@ export type Box = {
   iconUrl?: Maybe<Scalars["String"]>
   cost?: Maybe<Scalars["Float"]>
 }
+
+export type OpenBoxInput = {
+  boxId: Scalars["ID"]
+  amount?: Maybe<Scalars["Int"]>
+  multiplierBoxBet?: Maybe<Scalars["Float"]>
+}
+
+export type BoxOpeningConnection = {
+  __typename?: "BoxOpeningConnection"
+  pageInfo: PageInfo
+  edges?: Maybe<Array<Maybe<BoxOpeningEdge>>>
+  total?: Maybe<Scalars["Int"]>
+}
+
+export type BoxOpeningEdge = {
+  __typename?: "BoxOpeningEdge"
+  node?: Maybe<BoxOpening>
+  cursor: Scalars["String"]
+}
+
+export type BoxOpening = {
+  __typename?: "BoxOpening"
+  id: Scalars["ID"]
+}
+
+export type ItemVariant = {
+  __typename?: "ItemVariant"
+  id: Scalars["ID"]
+  name?: Maybe<Scalars["String"]>
+  value: Scalars["Float"]
+}
+
+export type Item = {
+  id: Scalars["ID"]
+}
+
+export type User = {
+  __typename?: "User"
+  id: Scalars["ID"]
+  name?: Maybe<Scalars["String"]>
+  wallets?: Maybe<Array<Maybe<Wallet>>>
+}
+
+export type Wallet = {
+  __typename?: "Wallet"
+  id: Scalars["ID"]
+  amount?: Maybe<Scalars["Float"]>
+  currency: Scalars["String"]
+}

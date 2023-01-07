@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {BoxesListComponent} from "./boxes-list/boxes-list.component";
 import {BoxDetailComponent} from "./box-detail/box-detail.component";
+import {formatNumber} from "@angular/common";
 
 const routes: Routes = [
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
     component: BoxesListComponent
   },
   {
-    path: 'box detail',
+    path: 'box/:id',
     component: BoxDetailComponent
   }
 ];

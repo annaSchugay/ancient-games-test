@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular'
+import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoxesListComponent } from './boxes-list/boxes-list.component';
@@ -30,7 +30,8 @@ import { InMemoryCache } from '@apollo/client/core'
         return {
           cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: 'https://api-staging.csgoroll.com/graphql'
+            uri: 'https://api-staging.csgoroll.com/graphql',
+            withCredentials: true
           })
         }
       },
