@@ -1,12 +1,10 @@
-<div *ngFor="let user of user$ | async">
-  {{ user.name }}
-  {{ user.wallets }}
-</div>
+<header class="flex px-5 py-5 h-1/6 gap-3.5">
+  <ng-container *ngIf="user$; else unAuthorised">
+    <span>{{ (user$ | async)?.name }}</span>
 
->>>>>> {{ user$ | async | json }}
-
-//////////////
-
-<div *ngFor="let wallet of wallets$ | async">
-  {{ wallet.amount }}
-</div>
+    <span *ngFor="let wallet of wallets$ | async">{{ wallet.amount }}</span>
+  </ng-container>
+  <ng-template #unAuthorised>
+    <a href="https://api-staging.csgoroll.com/auth/steam?redirectUri=http://localhost:4200" class="button">Login</a>
+  </ng-template>
+</header>
