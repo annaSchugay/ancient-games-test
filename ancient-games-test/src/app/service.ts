@@ -27,11 +27,11 @@ export class Service {
       .pipe(map((result: any) => result.data.currentUser));
   }
 
-  openBox({boxId}: OpenBoxInput): void {
+  openBox({boxId, amount}: OpenBoxInput): void {
     this.apollo.mutate({
       mutation: OPEN_BOX,
       variables: {
-        input: {boxId}
+        input: {boxId, amount: 1}
       }
     })
       .subscribe(res => {console.log('res>>>>> ', res)}
