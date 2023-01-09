@@ -14,8 +14,4 @@ export class BoxesListComponent {
   constructor(private service: Service) {
     this.boxes$ = this.service.boxes();
   }
-
-  updateWallet() {
-    this.service.updateWallet();
-  }
 }

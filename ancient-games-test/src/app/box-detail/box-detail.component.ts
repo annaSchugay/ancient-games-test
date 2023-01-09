@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {map, Observable, Subscription} from "rxjs";
-import {BoxEdge, Item, ItemVariant} from "../types";
+import {BoxEdge} from "../types";
 import {Service} from "../service";
 
 @Component({
   selector: 'app-box-detail',
   templateUrl: './box-detail.component.html',
-  styleUrls: ['./box-detail.component.scss']
+  styleUrls: ['./box-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BoxDetailComponent {
   box$ = new Observable<BoxEdge[]>;
@@ -25,6 +26,6 @@ export class BoxDetailComponent {
   }
 
   openBox(): void {
-    this.service.openBox({boxId: this.boxId})
+    this.service.openBox({boxId: this.boxId});
   }
 }

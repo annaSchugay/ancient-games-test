@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
 import {Service} from "../service";
 import {map, Observable} from "rxjs";
 import {User, Wallet} from "../types";
@@ -7,19 +7,19 @@ import {User, Wallet} from "../types";
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   user$ = new Observable<User>;
+  wallets$ = new Observable<Wallet[]>;
   walletsSum$ = new Observable<number>;
   acc$ = 0;
 
   constructor(
-    private service: Service,
-    private changeDetection: ChangeDetectorRef
+    private service: Service
   ) {
     this.user$ = this.service.user().pipe(map((user: User) => user));
-    this.user$.subscribe((user) => this.changeDetection.markForCheck());
+    this.wallets$ = this.service.user().pipe(map((user) => user.wallets));
     this.walletsSum$ = this.service
       .user()
       .pipe(

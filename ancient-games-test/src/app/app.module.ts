@@ -8,7 +8,15 @@ import { BoxDetailComponent } from './box-detail/box-detail.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from "@angular/common/http";
 import { HttpLink } from 'apollo-angular/http'
-import { InMemoryCache } from '@apollo/client/core'
+import {split, ApolloClientOptions, InMemoryCache} from '@apollo/client/core'
+import {WebSocketLink} from "@apollo/client/link/ws";
+import {getMainDefinition} from "@apollo/client/utilities";
+
+interface Definition {
+  kind: string;
+  operation?: string;
+};
+
 
 @NgModule({
   declarations: [
@@ -26,13 +34,31 @@ import { InMemoryCache } from '@apollo/client/core'
   providers: [
     {
       provide: APOLLO_OPTIONS,
-      useFactory(httpLink: HttpLink) {
+      useFactory(httpLink: HttpLink): ApolloClientOptions<any> {
+        const http = httpLink.create({
+          uri: 'https://api-staging.csgoroll.com/graphql',
+          withCredentials: true
+        })
+
+        const ws = new WebSocketLink({
+          uri: 'wss://api-staging.csgoroll.com/graphql',
+          options: {
+            reconnect: true
+          }
+        })
+
+        const link = split(
+          ({ query }) => {
+            const { kind, operation }: Definition = getMainDefinition(query);
+            return kind === 'OperationDefinition' && operation === 'subscription';
+          },
+          ws,
+          http
+        )
+
         return {
-          cache: new InMemoryCache(),
-          link: httpLink.create({
-            uri: 'https://api-staging.csgoroll.com/graphql',
-            withCredentials: true
-          })
+          link,
+          cache: new InMemoryCache()
         }
       },
       deps: [HttpLink]

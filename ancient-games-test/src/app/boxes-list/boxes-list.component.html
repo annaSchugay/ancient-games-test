@@ -4,9 +4,9 @@
     class="cursor-pointer basis-40 flex relative before:-skew-y-3 before:block before:absolute before:-inset-1 before:bg-orange-400 before:ring-2 before:ring-zinc-400 hover:scale-125"
     [routerLink]="['/box/', box.node?.id]"
   >
-    <div class="relative flex flex-col items-center py-3 px-3" (click)="updateWallet()">
+    <div class="relative flex flex-col items-center py-3 px-3">
       <h2 class="text-xl">{{ box.node?.name}}</h2>
-      <h3 class="text-lg font-bold text-yellow-400">&euro; {{ box.node?.cost }}</h3>
+      <h3 class="text-lg font-bold text-yellow-400">{{ box.node?.cost }} &euro;</h3>
       <img
         src="{{ box.node?.iconUrl }}"
         class="hover:scale-20"

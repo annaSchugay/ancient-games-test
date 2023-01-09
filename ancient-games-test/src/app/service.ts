@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {ChangeDetectorRef, Injectable} from '@angular/core';
 import {Apollo} from 'apollo-angular';
 import {map} from 'rxjs';
 import {GET_BOXES, GET_USER, OPEN_BOX, UPDATE_WALLET_SUBSCRIPTION} from "./gql";
